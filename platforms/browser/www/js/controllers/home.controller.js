@@ -55,9 +55,12 @@ var HomeController = {
             center: milan
         });
     },
-    initialize: function() {
+    onInit: function() {
         HomeController.initMap();
         HomeController.fetchFriends();
+    },
+    onDestroy: function() {
+
     },
     //calculates distance between two points in km's
     calcDistance: function(p1, p2) {
@@ -70,11 +73,10 @@ var HomeController = {
 
             // Add my position, if available
             if( LocalizationService.currentPosition ) {
-                var image = '../img/myposition.png';
                 var beachMarker = new google.maps.Marker({
                     position: {lat: LocalizationService.currentPosition.latitude, lng: LocalizationService.currentPosition.longitude},
                     map: HomeController.googleMap,
-                    icon: image,
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
                     title: 'My position'
                 });
             }

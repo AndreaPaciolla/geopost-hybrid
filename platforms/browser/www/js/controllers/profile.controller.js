@@ -3,9 +3,13 @@ var ProfileController = {
     activeView: undefined,
     // Reference to map profile
     googleMap: undefined,
-    initialize: function() {
+    onInit: function() {
         ProfileController.switchOrientationViews();
         ProfileController.attachEventsListener();
+    },
+    onDestroy: function() {
+        // detach the listener
+        screen.orientation.onchange = app.setMaximumViewportHeight();
     },
     attachEventsListener: function() {
         screen.orientation.onchange = function(){
@@ -24,9 +28,6 @@ var ProfileController = {
             ProfileController.activeView = 'landscape';
         }
         ProfileController.generateView();
-    },
-    onDestroy: function() {
-
     },
     generateView: function() {
         var session_id = localStorage.getItem( AppConstants.SESSION_ID_KEY );
@@ -48,21 +49,24 @@ var ProfileController = {
                 center: {lat: profile.lat, lng: profile.lon}
             });
             // Add my position, if available
-            if( LocalizationService.currentPosition ) {
-                var image = '../img/myposition.png';
-                var beachMarker = new google.maps.Marker({
-                    position: {lat: LocalizationService.currentPosition.latitude, lng: LocalizationService.currentPosition.longitude},
-                    map: ProfileController.googleMap,
-                    icon: image,
-                    title: 'My position'
-                });
-            }
+            var beachMarker = new google.maps.Marker({
+                position: {lat: profile.lat, lng: profile.lon},
+                map: ProfileController.googleMap,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                title: 'My position'
+            });
+
+            // set the height of viewport
+            app.setMaximumViewportHeight();
         }).fail( function(error) {
             console.log('ProfileController: initialize method: ', error);
-            navigator.notification.alert(error.responseText || 'Could not initialize the profile.');
+            navigator.notification.alert(error.responseText || 'Could not initialize the profile.', 'Error loading profile data');
         });
     },
     logout: function() {
+        // detach the listener
+        screen.orientation.onchange = app.setMaximumViewportHeight();
+
         var session_id = localStorage.getItem( AppConstants.SESSION_ID_KEY );
 
         $.get(Api.LOGOUT + '?session_id=' + session_id, function(results){
@@ -70,12 +74,14 @@ var ProfileController = {
             // erase the localstorage
             localStorage.clear();
             // Greeting the user
-            navigator.notification.alert('Goodbye');
+            navigator.notification.alert('Goodbye', 'Disconnecting...');
+            // make the bottom navigation menu invisible
+            $('#bottom_navigation').fadeOut(50);
             // Go to the login page
             Router.go(PagesName.LOGIN);
         }).fail( function(error) {
             console.log('ProfileController: logout method: ', error);
-            navigator.notification.alert(error.responseText || 'Could not do the logout');
+            navigator.notification.alert(error.responseText || 'Could not do the logout', 'Logout failed');
         });
     }
 }

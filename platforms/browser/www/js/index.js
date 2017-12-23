@@ -27,6 +27,9 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+
+        // detach the listener
+        screen.orientation.onchange = app.setMaximumViewportHeight();
     },
     // deviceready Event Handler
     //
@@ -36,13 +39,27 @@ var app = {
         app.receivedEvent('deviceready');
         // Setup the current position once at startup
         LocalizationService.setCurrentPosition();
+        app.setMaximumViewportHeight();
         if( AuthService.isAuthenticated() ) {
+            // make the bottom navigation menu visible
+            $('#bottom_navigation').fadeIn(400);
+            // go to the app homepage
             Router.go(PagesName.HOME);
         }
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log('Received Event: ' + id);
+    },
+    setMaximumViewportHeight: function() {
+        if(location.hash === '#'+PagesName.LOGIN || location.hash === '') {
+            $('.container-fluid').css('height', $(window).height());
+            $('.container-fluid').css('max-height', '');
+            $('.container-fluid').css('overflow-y', '');
+        } else {
+            $('.container-fluid').css('max-height', $(window).height() - 60).css('overflow-y', 'scroll');
+            $('.container-fluid').css('height', '');
+        }
     }
 };
 

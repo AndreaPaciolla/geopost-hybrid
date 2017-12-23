@@ -8,13 +8,13 @@ var AddFriendController = {
         $.get(Api.FOLLOW + '?session_id=' + session_id + '&username=' + username, function(results){
             console.debug('AddFriendController: followUser method: ', results);
             $('#autocomplete_users').val('');
-            navigator.notification.alert("You are now following " + username);
+            navigator.notification.alert("You are now following " + username, 'Success');
         }).fail( function(error) {
             console.debug('AddFriendController: followUser method: ', error);
-            navigator.notification.alert(error.responseText || 'Could not follow this user');
+            navigator.notification.alert(error.responseText || 'Could not follow this user', 'Cannot follow');
         });
     },
-    initialize: function() {
+    onInit: function() {
         var session_id = localStorage.getItem(AppConstants.SESSION_ID_KEY);
 
         var options = {
@@ -31,5 +31,8 @@ var AddFriendController = {
         };
 
         $("#autocomplete_users").easyAutocomplete(options);
+    },
+    onDestroy: function() {
+
     }
 };

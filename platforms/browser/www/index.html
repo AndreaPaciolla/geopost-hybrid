@@ -22,23 +22,32 @@
     <link rel="stylesheet" href="css/easy-autocomplete.min.css">
     <link rel="stylesheet" href="css/easy-autocomplete.themes.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
+    <title>Geopost hybrid</title>
 </head>
 
 <body>
 
     <div id="page_login" class="container-fluid visible">
-        <div class="alert alert-warning alert-dismissible" style="display:none" id="alert-login">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Warning!</strong> Username or password not valid.
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <img src="img/logo.png" alt="Geopost" class="text-center" width="60" style="margin: 1em;">
+            </div>
         </div>
-        <img src="" alt="">
-        <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
-        <br>
-        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit"
-                onClick="LoginController.doLogin($('#username').val(), $('#password').val())">JOIN</button>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-warning alert-dismissible" style="display:none" id="alert-login">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Username or password not valid.
+                </div>
+                <img src="" alt="">
+                <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+                <br>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        onClick="LoginController.doLogin($('#username').val(), $('#password').val())">JOIN</button>
+            </div>
+        </div>
     </div>
 
     <div id="page_home" class="container-fluid" style="display:none">
@@ -133,7 +142,7 @@
     </div>
 
 
-    <div class="container-full bottom-navigation">
+    <div class="container-full bottom-navigation" id="bottom_navigation" style="display: none">
         <div class="row text-center clearfix">
             <div class="col-xs-3 col-sm-3" onClick="Router.go(PagesName.HOME)">
                 <span class="glyphicon glyphicon-home"></span><br>

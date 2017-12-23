@@ -63,3 +63,8 @@
 #followed_list {
     margin-top: 20px;
 }
+
+#page_login {
+    background: url('../img/login_bg.jpg') center center no-repeat;
+    background-size: cover;
+}
