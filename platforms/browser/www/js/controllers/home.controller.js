@@ -23,7 +23,16 @@ var HomeController = {
     initListView: function() {
         // compute distance from me
         if( LocalizationService.currentPosition ) {
-            HomeController.friends.forEach( function(friend) {
+
+            var friendsWithPosition = HomeController.friends.filter( function(friend) {
+                return !!friend.lat && !!friend.lon;
+            });
+
+            var friendsWithoutPosition = HomeController.friends.filter( function(friend) {
+                return friend.lat == undefined || friend.lat == null;
+            });
+
+            friendsWithPosition.forEach( function(friend) {
                 // if the user has defined geolocation...
                 friend.distanceFromMe = undefined;
                 if( friend.lat && friend.lon ) {
@@ -32,14 +41,23 @@ var HomeController = {
                     friend.distanceFromMe = HomeController.calcDistance(p1, p2);
                 }
             });
-            HomeController.friends.sort( function(f1, f2) {
+            friendsWithPosition.sort( function(f1, f2) {
                 if (f1.distanceFromMe < f2.distanceFromMe)
                     return -1;
                 if (f1.distanceFromMe > f2.distanceFromMe)
                     return 1;
                 return 0;
-            })
+            });
+
+            HomeController.friends = friendsWithPosition.concat(friendsWithoutPosition);
+
+            HomeController.fillFollowedList();
+        } else {
+            HomeController.fillFollowedList();
         }
+
+    },
+    fillFollowedList: function() {
         HomeController.friends.forEach( function(friend) {
             if(friend.distanceFromMe) {
                 $('#followed_list').append('<li class="list-group-item"><span class="badge">'+ friend.distanceFromMe +' km</span><h5>'+ friend.username +'</h5>'+ friend.msg +'</li>');
@@ -64,7 +82,7 @@ var HomeController = {
     },
     //calculates distance between two points in km's
     calcDistance: function(p1, p2) {
-        return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+        return parseFloat((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2));
     },
     addMarkers: function(persons) {
         var bounds = new google.maps.LatLngBounds();
