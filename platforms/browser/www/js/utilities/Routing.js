@@ -9,8 +9,8 @@ var Router = {
     },
     hideAllExcept: function(pageId) {
         Pages.forEach( function(pageObj) {
-            if(pageId !== pageObj.name) $('#'+pageObj.name).fadeOut();
-            if(pageId === pageObj.name) $('#'+pageObj.name).fadeIn();
+            if(pageId !== pageObj.name) $('#'+pageObj.name).fadeOut(50);
+            if(pageId === pageObj.name) $('#'+pageObj.name).fadeIn(500);
         })
     },
     callInitMethod: function(pageId) {
