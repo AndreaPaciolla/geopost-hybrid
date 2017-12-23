@@ -1,16 +1,49 @@
 var ProfileController = {
+    // Active view
+    activeView: undefined,
     // Reference to map profile
     googleMap: undefined,
     initialize: function() {
+        ProfileController.switchOrientationViews();
+        ProfileController.attachEventsListener();
+    },
+    attachEventsListener: function() {
+        screen.orientation.onchange = function(){
+            console.log(screen.orientation.type);
+            ProfileController.switchOrientationViews();
+        };
+    },
+    switchOrientationViews: function() {
+        if(window.screen.orientation.type == "portrait" || window.screen.orientation.type === 'portrait-primary' || window.screen.orientation.type === 'portrait-secondary') {
+            $('#profilePortrait').fadeIn(500);
+            $('#profileLandscape').fadeOut(50);
+            ProfileController.activeView = 'portrait';
+        } else if(window.screen.orientation.type == "landscape-primary" || window.screen.orientation.type === 'landscape-secondary' || window.screen.orientation.type === 'landscape') {
+            $('#profilePortrait').fadeOut(50);
+            $('#profileLandscape').fadeIn(500);
+            ProfileController.activeView = 'landscape';
+        }
+        ProfileController.generateView();
+    },
+    onDestroy: function() {
+
+    },
+    generateView: function() {
         var session_id = localStorage.getItem( AppConstants.SESSION_ID_KEY );
 
-        $.get(Api.PROFILE + '?session_id=' + session_id, function(profile){
+        $.get(Api.PROFILE + '?session_id=' + session_id, function(profile) {
             console.log('ProfileController: initialize method: ', profile);
             // Setup the view
-            $('#profileUsername').html(profile.username);
-            $('#profileLastState').html(profile.msg);
+            $('.profileUsername').html(profile.username);
+            $('.profileLastState').html(profile.msg);
             // Setup the map
-            ProfileController.googleMap = new google.maps.Map(document.getElementsByClassName('map_profile')[0], {
+            var mapElm = undefined;
+            if( ProfileController.activeView === 'portrait') {
+                mapElm = $('#profilePortrait .map_profile');
+            } else {
+                mapElm = $('#profileLandscape .map_profile');
+            }
+            ProfileController.googleMap = new google.maps.Map(mapElm[0], {
                 zoom: 15,
                 center: {lat: profile.lat, lng: profile.lon}
             });

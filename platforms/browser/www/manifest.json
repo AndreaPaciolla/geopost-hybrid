@@ -1,11 +1,11 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "helloworld",
-  "short_name": "helloworld",
+  "name": "Geopost",
+  "short_name": "Geopost",
   "version": "com.phonegap.helloworld",
-  "description": "Hello World sample application that responds to the deviceready event.",
-  "author": "PhoneGap Team",
+  "description": "A social app as university experiment",
+  "author": "Andrea Paciolla",
   "icons": [],
   "start_url": "index.html"
 }
