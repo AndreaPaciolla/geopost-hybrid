@@ -60,9 +60,9 @@ var HomeController = {
     fillFollowedList: function() {
         HomeController.friends.forEach( function(friend) {
             if(friend.distanceFromMe) {
-                $('#followed_list').append('<li class="list-group-item"><span class="badge">'+ friend.distanceFromMe +' km</span><h5>'+ friend.username +'</h5>'+ friend.msg +'</li>');
+                $('#followed_list').append('<li class="list-group-item"><span class="badge">'+ friend.distanceFromMe +' km</span><h5><strong>'+ friend.username +'</strong></h5>'+ friend.msg +'</li>');
             } else {
-                $('#followed_list').append('<li class="list-group-item"><span class="badge">N.D.</span><h5>'+ friend.username +'</h5>'+ friend.msg +'</li>');
+                $('#followed_list').append('<li class="list-group-item"><span class="badge">N.D.</span><h5><strong>'+ friend.username +'</strong></h5>'+ friend.msg +'</li>');
             }
         });
     },
@@ -78,7 +78,9 @@ var HomeController = {
         HomeController.fetchFriends();
     },
     onDestroy: function() {
-
+        $('#followed_list').html('');
+        HomeController.friends = [];
+        HomeController.googleMap = undefined;
     },
     //calculates distance between two points in km's
     calcDistance: function(p1, p2) {
