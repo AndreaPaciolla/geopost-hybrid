@@ -25,6 +25,10 @@
     width: 100%;
 }
 
+.width-full {
+    width: 100% !important;
+}
+
 .bottom-navigation {
     box-shadow: 0 2px 10px 0px #707070;
     position: fixed;
@@ -48,4 +52,8 @@
     top: 10px;
     right: 10px;
     z-index: 99;
+}
+
+#followed_list {
+    margin-top: 20px;
 }

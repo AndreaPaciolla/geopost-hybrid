@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        // Setup the current position once at startup
         LocalizationService.setCurrentPosition();
         if( AuthService.isAuthenticated() ) {
             Router.go(PagesName.HOME);

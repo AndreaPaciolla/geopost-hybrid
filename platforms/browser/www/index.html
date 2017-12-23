@@ -19,6 +19,8 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/easy-autocomplete.min.css">
+    <link rel="stylesheet" href="css/easy-autocomplete.themes.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <title>Hello World</title>
 </head>
@@ -61,14 +63,21 @@
     </div>
 
     <div id="page_add_friend" class="container-fluid" style="display:none">
-        <form class="form-signin">
-            <img src="" alt="">
-            <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
-            <br>
-            <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-            <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">JOIN</button>
-        </form>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="text-center">Add a friend</h1>
+                <h3 class="text-center">Here you can follow a new friend</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="users" id="autocomplete_users"/>
+                <!-- Split button -->
+                <div class="btn-group width-full" style="margin-top:20px">
+                    <button type="button" class="btn btn-info width-full" onClick="AddFriendController.followUser( $('#autocomplete_users').val() )">Add a friend</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="page_profile" class="container-fluid" style="display:none">
@@ -91,7 +100,7 @@
             </div>
             <div class="col-xs-3 col-sm-3" onClick="Router.go(PagesName.ADD_FRIEND)">
                 <span class="glyphicon glyphicon-plus"></span><br>
-                Add frienD
+                Add friend
             </div>
             <div class="col-xs-3 col-sm-3" onClick="Router.go(PagesName.STATE)">
                 <span class="glyphicon glyphicon-comment"></span><br>
@@ -108,8 +117,10 @@
 
     <!-- Libraries -->
     <script src="js/vendors/jquery-1.10.2.min.js"></script>
+    <script src="js/vendors/jquery.autocomplete.js"></script>
     <script src="js/vendors/popper.min.js"></script>
     <script src="js/vendors/bootstrap.min.js"></script>
+    <script src="js/vendors/jquery.easy-autocomplete.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo2JTKIAFjRW_b-Dt6Nx5BML0SIM-ljcg&libraries=geometry"></script>
     <!-- Custom code -->
     <script src="js/utilities/AppConstants.js"></script>
@@ -122,6 +133,7 @@
     <!-- Controllers -->
     <script src="js/controllers/login.controller.js"></script>
     <script src="js/controllers/home.controller.js"></script>
+    <script src="js/controllers/add-friend.controller.js"></script>
     <!-- Main app entrypoint -->
     <script type="text/javascript" src="js/index.js"></script>
 </body>

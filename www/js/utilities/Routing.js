@@ -18,6 +18,9 @@ var Router = {
             case PagesName.HOME:
                 HomeController.initialize();
                 break;
+            case PagesName.ADD_FRIEND:
+                AddFriendController.initialize();
+                break;
         }
     }
 }
