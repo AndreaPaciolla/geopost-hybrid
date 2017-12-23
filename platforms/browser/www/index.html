@@ -80,6 +80,24 @@
         </div>
     </div>
 
+    <div id="page_state" class="container-fluid" style="display:none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="text-center">Update your state</h1>
+                <h3 class="text-center">Let folks who follow you about your state</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="users" id="txtState"/>
+                <!-- Split button -->
+                <div class="btn-group width-full" style="margin-top:20px">
+                    <button type="button" class="btn btn-info width-full" onClick="UpdateStateController.updateState( $('#txtState').val() )">Update my state</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="page_profile" class="container-fluid" style="display:none">
         <form class="form-signin">
             <img src="" alt="">
@@ -134,6 +152,7 @@
     <script src="js/controllers/login.controller.js"></script>
     <script src="js/controllers/home.controller.js"></script>
     <script src="js/controllers/add-friend.controller.js"></script>
+    <script src="js/controllers/update-state.controller.js"></script>
     <!-- Main app entrypoint -->
     <script type="text/javascript" src="js/index.js"></script>
 </body>

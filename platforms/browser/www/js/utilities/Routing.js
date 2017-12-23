@@ -21,6 +21,9 @@ var Router = {
             case PagesName.ADD_FRIEND:
                 AddFriendController.initialize();
                 break;
+            case PagesName.STATE:
+                UpdateStateController.initialize();
+                break;
         }
     }
 }

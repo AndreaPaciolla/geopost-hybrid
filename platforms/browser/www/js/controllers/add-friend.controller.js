@@ -7,7 +7,7 @@ var AddFriendController = {
 
         $.get(Api.FOLLOW + '?session_id=' + session_id + '&username=' + username, function(results){
             console.debug('AddFriendController: followUser method: ', results);
-            $('#username').val('');
+            $('#autocomplete_users').val('');
             navigator.notification.alert("You are now following " + username);
         }).fail( function(error) {
             console.debug('AddFriendController: followUser method: ', error);
