@@ -24,6 +24,9 @@ var Router = {
             case PagesName.STATE:
                 UpdateStateController.initialize();
                 break;
+            case PagesName.PROFILE:
+                ProfileController.initialize();
+                break;
         }
     }
 }
