@@ -14,7 +14,16 @@ var Router = {
                 $('#'+pageObj.name).fadeOut(50);
                 Router.callDestroyMethod(pageObj.name);
             }
-            if(pageId === pageObj.name) $('#'+pageObj.name).fadeIn(500);
+            if(pageId === pageObj.name) {
+                $('#'+pageObj.name).fadeIn(500);
+                // Load the page content
+                $("body > main").load('views/'+ $('#'+pageObj.name) + ".html", function(responseTxt, statusTxt, xhr){
+                    if(statusTxt == "success")
+                        console.log("External content loaded successfully!");
+                    if(statusTxt == "error")
+                        console.log("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+            }
         })
     },
     callInitMethod: function(pageId) {

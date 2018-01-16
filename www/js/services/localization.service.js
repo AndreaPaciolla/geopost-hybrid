@@ -20,7 +20,7 @@ var LocalizationService = {
         console.log('LocalizationService: setCurrentPosition: ', error);
         switch(error.code) {
             case error.PERMISSION_DENIED:
-                navigator.notification.alert("User denied the request for Geolocation.");
+                //navigator.notification.alert("User denied the request for Geolocation.");
                 break;
             case error.POSITION_UNAVAILABLE:
                 navigator.notification.alert("Location information is unavailable.");
