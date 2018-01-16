@@ -7,7 +7,7 @@ var Router = {
         // after the hash has changed, adapt the view
         Router.hideAllExcept(pageId);
         // this call needs to be moved inside the hideAllExcept method
-        // Router.callInitMethod(pageId);
+        Router.callInitMethod(pageId);
     },
     hideAllExcept: function(pageId) {
         Pages.forEach( function(pageObj) {
@@ -17,8 +17,10 @@ var Router = {
             }
             // Dynamic page-content loading bades upon routes
             if(pageId === pageObj.name) {
+                $('#'+pageObj.name).fadeIn(500);
                 // Load the page content
-                $("body > main").load('../views/'+ pageObj.name + ".html", function(responseTxt, statusTxt, xhr){
+                // does not work on android
+                /*$("body > main").load('../../views/'+ pageObj.name + ".html", function(responseTxt, statusTxt, xhr){
                     // Show the content loaded
                     $('#'+pageObj.name).fadeIn(500);
 
@@ -29,7 +31,7 @@ var Router = {
                         console.log("External content loaded successfully!");
                     if(statusTxt == "error")
                         console.log("Error: " + xhr.status + ": " + xhr.statusText);
-                });
+                });*/
             }
         })
     },
