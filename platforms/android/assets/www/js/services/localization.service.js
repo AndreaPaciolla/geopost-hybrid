@@ -15,6 +15,7 @@ var LocalizationService = {
     onPositionSuccess: function(position) {
         console.log('LocalizationService: setCurrentPosition: ', position);
         LocalizationService.currentPosition = position.coords;
+        $(document).trigger(AppConstants.EVENT_POSITION_UPDATED);
     },
     onPositionError: function(error) {
         console.log('LocalizationService: setCurrentPosition: ', error);

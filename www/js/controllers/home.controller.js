@@ -58,6 +58,7 @@ var HomeController = {
 
     },
     fillFollowedList: function() {
+        $('#followed_list').html('');
         HomeController.friends.forEach( function(friend) {
             if(friend.distanceFromMe) {
                 $('#followed_list').append('<li class="list-group-item"><span class="badge">'+ friend.distanceFromMe +' km</span><h5><strong>'+ friend.username +'</strong></h5>'+ friend.msg +'</li>');
@@ -70,10 +71,17 @@ var HomeController = {
         var milan = {lat: 35.9197885, lng: -88.7589488};
         HomeController.googleMap = new google.maps.Map(document.getElementById('map'), {
             zoom: 7,
-            center: milan
+            center: milan,
+            disableDefaultUI: true
         });
     },
     onInit: function() {
+        $( document ).on( AppConstants.EVENT_POSITION_UPDATED, function() {
+            console.log("HomeController: Got new position...");
+            HomeController.initListView();
+        });
+        // Setup the current position once at startup
+        LocalizationService.setCurrentPosition();
         HomeController.initMap();
         HomeController.fetchFriends();
     },

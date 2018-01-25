@@ -37,8 +37,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        // Setup the current position once at startup
-        LocalizationService.setCurrentPosition();
         app.setMaximumViewportHeight();
         if( AuthService.isAuthenticated() ) {
             // make the bottom navigation menu visible
