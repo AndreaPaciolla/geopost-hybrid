@@ -1,18 +1,14 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# Geopost [hybrid] [![bitHound Score][bithound-img]][bithound-url]
 
-A PhoneGap Hello World template
+A PhoneGap-based social application made for an University project.
+Other preview images are available inside docs folder.
+
+![alt text](https://raw.githubusercontent.com/AndreaPaciolla/geopost-hybrid/master/docs/homepage.JPG "Homepage")
 
 ## Usage
 
 #### PhoneGap CLI
-
-The hello-world template is the default when you create a new application using the [phonegap-cli][phonegap-cli-url].
-
-    phonegap create my-app
-
-Create an app using this template specifically:
-
-    phonegap create my-app --template hello-world
+First of all you need to install phonegap on your system.
 
 To see a list of other available PhoneGap templates:
 
