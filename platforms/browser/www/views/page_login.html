@@ -1,0 +1,22 @@
+<div id="page_login" class="container-fluid visible">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4">
+            <img src="img/logo.png" alt="Geopost" class="text-center" width="60" style="margin: 1em;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-warning alert-dismissible" style="display:none" id="alert-login">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Warning!</strong> Username or password not valid.
+            </div>
+            <img src="" alt="">
+            <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+            <br>
+            <input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"
+                    onClick="LoginController.doLogin($('#username').val(), $('#password').val())">JOIN</button>
+        </div>
+    </div>
+</div>

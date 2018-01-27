@@ -1,0 +1,20 @@
+<div id="page_home" class="container-fluid" style="display:none">
+    <!-- Map view -->
+    <div id="page_home_mapView">
+        <div id="map"></div>
+
+        <div class="over_map" onclick="$('#page_home_listView').fadeIn();$('#page_home_mapView').fadeOut();app.setMaximumViewportHeight()">
+            <span class="glyphicon glyphicon-list"></span>
+        </div>
+    </div>
+    <!-- List view -->
+    <div id="page_home_listView" style="display:none">
+        <div class="over_map" onclick="$('#page_home_listView').fadeOut();$('#page_home_mapView').fadeIn();app.setMaximumViewportHeight()">
+            <span class="glyphicon glyphicon-map-marker"></span>
+        </div>
+
+        <ul id="followed_list" class="list-group">
+            <!-- friends list -->
+        </ul>
+    </div>
+</div>
