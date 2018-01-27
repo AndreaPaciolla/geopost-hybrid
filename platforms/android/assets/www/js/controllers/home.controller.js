@@ -60,10 +60,11 @@ var HomeController = {
     fillFollowedList: function() {
         $('#followed_list').html('');
         HomeController.friends.forEach( function(friend) {
+            var message = (!!friend.msg) ? friend.msg : "";
             if(friend.distanceFromMe) {
-                $('#followed_list').append('<li class="list-group-item"><span class="badge">'+ friend.distanceFromMe +' km</span><h5><strong>'+ friend.username +'</strong></h5>'+ friend.msg +'</li>');
+                $('#followed_list').append('<li class="list-group-item" onclick="UserHistoryController.setUsername(\''+ friend.username +'\')"><span class="badge">'+ friend.distanceFromMe +' km</span><h5><strong>'+ friend.username +'</strong></h5>'+ message +'</li>');
             } else {
-                $('#followed_list').append('<li class="list-group-item"><span class="badge">N.D.</span><h5><strong>'+ friend.username +'</strong></h5>'+ friend.msg +'</li>');
+                $('#followed_list').append('<li class="list-group-item" onclick="UserHistoryController.setUsername(\''+ friend.username +'\')"><span class="badge">N.D.</span><h5><strong>'+ friend.username +'</strong></h5>'+ message +'</li>');
             }
         });
     },

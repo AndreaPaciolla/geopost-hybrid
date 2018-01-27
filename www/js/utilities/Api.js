@@ -5,5 +5,6 @@ var Api = {
     FOLLOW: "https://ewserver.di.unimi.it/mobicomp/geopost/follow",
     FOLLOWED: "https://ewserver.di.unimi.it/mobicomp/geopost/followed",
     STATUS_UPDATE: "https://ewserver.di.unimi.it/mobicomp/geopost/status_update",
-    PROFILE: "https://ewserver.di.unimi.it/mobicomp/geopost/profile"
+    PROFILE: "https://ewserver.di.unimi.it/mobicomp/geopost/profile",
+    HISTORY: "https://ewserver.di.unimi.it/mobicomp/geopost/history"
 };

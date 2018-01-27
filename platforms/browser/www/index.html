@@ -27,8 +27,136 @@
 
 <body>
 
-    <main>
-    </main>
+    <!--<main id="main_content_container"></main>-->
+
+    <div id="page_login" class="container-fluid visible">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                <img src="img/logo.png" alt="Geopost" class="text-center" width="60" style="margin: 1em;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-warning alert-dismissible" style="display:none" id="alert-login">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Username or password not valid.
+                </div>
+                <img src="" alt="">
+                <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+                <br>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password" required=""/>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        onClick="LoginController.doLogin($('#username').val(), $('#password').val())">JOIN</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page_home" class="container-fluid" style="display:none">
+        <!-- Map view -->
+        <div id="page_home_mapView">
+            <div id="map"></div>
+
+            <div class="over_map" onclick="$('#page_home_listView').fadeIn();$('#page_home_mapView').fadeOut();app.setMaximumViewportHeight()">
+                <span class="glyphicon glyphicon-list"></span>
+            </div>
+        </div>
+        <!-- List view -->
+        <div id="page_home_listView" style="display:none">
+            <div class="over_map" onclick="$('#page_home_listView').fadeOut();$('#page_home_mapView').fadeIn();app.setMaximumViewportHeight()">
+                <span class="glyphicon glyphicon-map-marker"></span>
+            </div>
+
+            <ul id="followed_list" class="list-group">
+                <!-- friends list -->
+            </ul>
+        </div>
+    </div>
+
+    <div id="page_add_friend" class="container-fluid" style="display:none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center">Add a friend</h3>
+                <h5 class="text-center">Here you can follow a new friend</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="users" id="autocomplete_users"/>
+                <!-- Split button -->
+                <div class="btn-group width-full" style="margin-top:20px">
+                    <button type="button" class="btn btn-info width-full" onClick="AddFriendController.followUser( $('#autocomplete_users').val() )">Add a friend</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page_history" class="container-fluid" style="display:none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center" id="historyPage_FriendUsername">Loading...</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul id="history_list" class="list-group">
+                    <!-- User old messages here... -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="page_profile" class="container-fluid" style="display:none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center">My profile</h3>
+                <h5 class="text-center">Here are your personal activities</h5>
+            </div>
+        </div>
+        <div class="row" id="profilePortrait" style="display: none">
+            <div class="col-xs-12">
+                <p><strong>Logged in as </strong> <span class="profileUsername"></span></p>
+                <p><strong>Last state was </strong> <span class="profileLastState"></span></p>
+                <!-- Map -->
+                <div class="map_profile"></div>
+            </div>
+        </div>
+        <div class="row" id="profileLandscape" style="display:none">
+            <div class="col-xs-6">
+                <p><strong>Logged in as </strong> <span class="profileUsername"></span></p>
+                <p><strong>Last state was </strong> <span class="profileLastState"></span></p>
+            </div>
+            <div class="col-xs-6 col-offset-6">
+                <!-- Map -->
+                <div class="map_profile"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="btn-group width-full" style="margin-top:20px">
+                    <button type="button" class="btn btn-danger width-full" onClick="ProfileController.logout()">LOGOUT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page_state" class="container-fluid" style="display:none">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="text-center">Update your state</h3>
+                <h5 class="text-center">Let folks who follow you about your state</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="users" id="txtState"/>
+                <!-- Split button -->
+                <div class="btn-group width-full" style="margin-top:20px">
+                    <button type="button" class="btn btn-info width-full" onClick="UpdateStateController.updateState( $('#txtState').val() )">Update my state</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-full bottom-navigation" id="bottom_navigation" style="display: none">
         <div class="row text-center clearfix">
@@ -74,6 +202,7 @@
     <script src="js/controllers/add-friend.controller.js"></script>
     <script src="js/controllers/update-state.controller.js"></script>
     <script src="js/controllers/profile.controller.js"></script>
+    <script src="js/controllers/user-history.controller.js"></script>
     <!-- Main app entrypoint -->
     <script type="text/javascript" src="js/index.js"></script>
 </body>

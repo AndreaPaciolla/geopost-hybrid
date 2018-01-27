@@ -15,6 +15,7 @@ var LocalizationService = {
     onPositionSuccess: function(position) {
         console.log('LocalizationService: setCurrentPosition: ', position);
         LocalizationService.currentPosition = position.coords;
+        $(document).trigger(AppConstants.EVENT_POSITION_UPDATED);
     },
     onPositionError: function(error) {
         console.log('LocalizationService: setCurrentPosition: ', error);
@@ -23,7 +24,7 @@ var LocalizationService = {
                 //navigator.notification.alert("User denied the request for Geolocation.");
                 break;
             case error.POSITION_UNAVAILABLE:
-                navigator.notification.alert("Location information is unavailable.");
+                console.log("Location information is unavailable.");
                 break;
             case error.TIMEOUT:
                 console.log("The request to get user location timed out.");

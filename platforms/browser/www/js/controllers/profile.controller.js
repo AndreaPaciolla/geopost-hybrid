@@ -46,7 +46,8 @@ var ProfileController = {
             }
             ProfileController.googleMap = new google.maps.Map(mapElm[0], {
                 zoom: 15,
-                center: {lat: profile.lat, lng: profile.lon}
+                center: {lat: profile.lat, lng: profile.lon},
+                disableDefaultUI: true
             });
             // Add my position, if available
             var beachMarker = new google.maps.Marker({
